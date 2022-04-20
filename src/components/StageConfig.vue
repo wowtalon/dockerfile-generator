@@ -126,7 +126,10 @@ export default {
       console.log(action);
       if (this.actions.length > 0 && action == "FROM") {
           this.new_action = ""
-          return ElMessage.error("只能在构建最开始指定基础镜像。")
+          return ElMessage.error("只能在构建最开始设置基础镜像。")
+      } else if (this.actions.length == 0 && action != 'FROM') {
+          this.new_action = ""
+          return ElMessage.error("请先设置基础镜像。")
       }
       this.key_placeholder = placeholders[action][0];
       if (placeholders[action].length > 1) {
