@@ -1,26 +1,32 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <h1>Dockerfile 生成</h1>
+  <docker-config></docker-config>
+  <stage-config></stage-config>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import DockerConfig from './components/DockerConfig.vue'
+import StageConfig from './components/StageConfig.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    DockerConfig,
+    StageConfig
   }
 }
 </script>
+
 
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  width: 980px;
+  margin: 0 auto;
+  margin-top: 40px;
 }
+
 </style>

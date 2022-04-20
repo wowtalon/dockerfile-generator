@@ -1,5 +1,7 @@
 # dockerfile-generator
 
+![](https://md-1307203044.cos.ap-guangzhou.myqcloud.com/202204201447859.png)
+
 ## Project setup
 ```
 npm install
