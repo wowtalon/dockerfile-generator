@@ -2,6 +2,10 @@
 
 ![](https://md-1307203044.cos.ap-guangzhou.myqcloud.com/202204201447859.png)
 
+## 预览
+
+![](https://md-1307203044.cos.ap-guangzhou.myqcloud.com/202204201537106.png)
+
 ## Project setup
 ```
 npm install
