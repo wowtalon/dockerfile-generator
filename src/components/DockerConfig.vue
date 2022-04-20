@@ -19,10 +19,6 @@
             <p>多阶段构建</p>
             <el-checkbox v-model="multiStage">开启</el-checkbox>
         </div>
-        <div class="config-wrapper">
-            <p>基础镜像</p>
-            <el-input placeholder="基础镜像"></el-input>
-        </div>
     </el-card>
 </template>
 

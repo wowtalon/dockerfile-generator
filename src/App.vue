@@ -2,6 +2,8 @@
   <h1>Dockerfile 生成</h1>
   <docker-config></docker-config>
   <stage-config></stage-config>
+  <h2>源代码</h2>
+  <p><el-link type="primary" href="https://github.com/wowtalon/dockerfile-generator">github</el-link></p>
 </template>
 
 <script>

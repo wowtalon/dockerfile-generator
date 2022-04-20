@@ -55,15 +55,19 @@
 </template>
 
 <script>
+
+import { ElMessage } from 'element-plus'
+
 const action_type = {
-  ARG: "声明键值/ARG",
-  RUN: "执行命令/RUN",
-  LABEL: "元数据/LABEL",
-  EXPOSE: "发布端口/EXPOSE",
-  ENV: "环境变量/ENV",
-  ADD: "添加文件/ADD",
-  COPY: "添加文件/COPY",
-  WORKDIR: "修改工作路径/WORKDIR",
+  FROM: "设置基础镜像 / FROM",
+  ARG: "声明键值 / ARG",
+  RUN: "执行命令 / RUN",
+  LABEL: "元数据 / LABEL",
+  EXPOSE: "发布端口 / EXPOSE",
+  ENV: "环境变量 / ENV",
+  ADD: "添加文件 / ADD",
+  COPY: "添加文件 / COPY",
+  WORKDIR: "修改工作路径 / WORKDIR",
   CMD: "CMD",
 };
 
@@ -77,17 +81,13 @@ const placeholders = {
   EXPOSE: ["输入需要发布的端口"],
   WORKDIR: ["输入路径"],
   CMD: ["输入命令"],
+  FROM: ["输入基础镜像", "输入镜像别名（可以为空）"],
 };
 
 export default {
   data() {
     return {
-      actions: [
-        {
-          name: "初始化容器",
-          inst: "FROM ubuntu:latest",
-        },
-      ],
+      actions: [],
       new_action: "",
       action_type: action_type,
       new_action_key: "",
@@ -100,9 +100,18 @@ export default {
       dockerfile: ""
     };
   },
+  mounted() {
+      this.update_dockerfile()
+  },
   methods: {
     add_action() {
       let that = this;
+      if (that.new_action.length == 0) {
+          return ElMessage({
+              type: "warning",
+              message: "请选择需要执行的操作。"
+          })
+      }
       that.actions.push({
         name: action_type[that.new_action],
         inst: `${that.new_action} ${that.new_action_key} ${that.new_action_value}`,
@@ -115,6 +124,10 @@ export default {
     },
     select_action(action) {
       console.log(action);
+      if (this.actions.length > 0 && action == "FROM") {
+          this.new_action = ""
+          return ElMessage.error("只能在构建最开始指定基础镜像。")
+      }
       this.key_placeholder = placeholders[action][0];
       if (placeholders[action].length > 1) {
         this.value_placeholder = placeholders[action][1];
